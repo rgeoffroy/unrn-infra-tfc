@@ -1,0 +1,18 @@
+services:
+  sonarqube:
+    image: sonarqube:lts-community
+    container_name: sonarqube
+    volumes:
+      - ./data:/opt/sonarqube/data
+      - ./logs:/opt/sonarqube/logs
+      - ./extensions:/opt/sonarqube/extensions
+    ports:
+      - "9000:9000"
+    restart: always
+networks:
+  default:
+    ipam:
+      driver: default
+      config:
+        - subnet: 192.168.22.0/29
+          gateway: 192.168.22.1
