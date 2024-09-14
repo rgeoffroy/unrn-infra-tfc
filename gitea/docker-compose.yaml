@@ -1,0 +1,15 @@
+version: '3'
+services:
+  git:
+    image: gitea/gitea:latest
+    container_name: git
+    environment:
+      - USER_UID=1000
+      - USER_GID=1000
+      - DB_TYPE=sqlite3
+    volumes:
+      - ./git:/data
+    ports:
+      - "3000:3000"
+      - "2222:22"
+    restart: always
