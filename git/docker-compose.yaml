@@ -9,8 +9,8 @@ services:
     volumes:
       - ./git:/data
     ports:
-      - "3000:3000"
-      - "2222:22"
+      - "8080:3000"
+      - "22001:22"
     restart: always
 networks:
   default:

@@ -7,7 +7,7 @@ services:
       - ./logs:/opt/sonarqube/logs
       - ./extensions:/opt/sonarqube/extensions
     ports:
-      - "9000:9000"
+      - "8082:9000"
     restart: always
 networks:
   default:
