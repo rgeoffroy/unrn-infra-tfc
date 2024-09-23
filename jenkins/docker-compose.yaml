@@ -1,7 +1,7 @@
 services:
   jenkins:
     #image: jenkins/jenkins:alpine3.20-jdk21
-    image: 172.16.21.52:5000/rgeoffroy/jenkins-docker:lts-jdk21
+    image: 172.16.21.52:5000/rgeoffroy/jenkins-docker:lts-jdk21-v2
     restart: always
     privileged: true
     user: root
