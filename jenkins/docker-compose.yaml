@@ -8,8 +8,10 @@ services:
       - 8081:8080
       - 50000:50000
     container_name: jenkins
+    environment:
+      - TZ=America/Argentina/Buenos_Aires
     volumes:
-      - /home/rgeoffroy/jenkins_compose/jenkins_configuration:/var/jenkins_home
+      - ./jenkins_compose/jenkins_configuration:/var/jenkins_home
       - /var/run/docker.sock:/var/run/docker.sock
 networks:
   default:
