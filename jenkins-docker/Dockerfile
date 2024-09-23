@@ -1,4 +1,4 @@
-FROM jenkins/jenkins:lts
+FROM jenkins/jenkins:alpine3.20-jdk21
 LABEL org.opencontainers.image.authors="rgeoffroy@jusrionegro.gov.ar"
 USER root
 RUN apt-get update && \
