@@ -1,0 +1,7 @@
+/jenkins/jenkins_compose/
+/registry/auth/
+/registry/registry_data/
+/sonarqube/data/
+/sonarqube/extensions/
+/sonarqube/logs/
+/git/git/
