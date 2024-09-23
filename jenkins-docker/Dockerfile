@@ -1,5 +1,5 @@
-LABEL org.opencontainers.image.authors="rgeoffroy@jusrionegro.gov.ar"
 FROM jenkins/jenkins:lts
+LABEL org.opencontainers.image.authors="rgeoffroy@jusrionegro.gov.ar"
 USER root
 RUN apt-get update && \
     apt-get -y install apt-transport-https \
