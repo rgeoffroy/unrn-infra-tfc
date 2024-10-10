@@ -3,6 +3,7 @@ services:
     image: registry:2.8.2
     ports:
       - 5000:5000
+      - 443
     container_name: registry
     environment:
 #      REGISTRY_STORAGE_FILESYSTEM_ROOTDIRECTORY: /var/lib/registry
@@ -16,19 +17,24 @@ services:
 #      REGISTRY_AUTH_HTPASSWD_PATH: /auth/htpasswd
 #      REGISTRY_AUTH_HTPASSWD_REALM: Registry Realm
 
-      REGISTRY_HTTP_HEADERS_Access-Control-Allow-Origin: '[http://registry-ui-devops.jusrionegro.gov.ar]'
+      REGISTRY_HTTP_HEADERS_Access-Control-Allow-Origin: '[https://registry-ui-devops.jusrionegro.gov.ar]'
       REGISTRY_HTTP_HEADERS_Access-Control-Allow-Methods: '[HEAD,GET,OPTIONS,DELETE]'
       REGISTRY_HTTP_HEADERS_Access-Control-Allow-Credentials: '[true]'
       REGISTRY_STORAGE_DELETE_ENABLED: 'true'
       REGISTRY_HTTP_HEADERS_Access-Control-Allow-Headers: '[Authorization,Accept,Cache-Control]'
       REGISTRY_HTTP_HEADERS_Access-Control-Expose-Headers: '[Docker-Content-Digest]'
+      REGISTRY_HTTP_TLS_CERTIFICATE: '/certs/jusrionegro.gov.ar.crt'
+      REGISTRY_HTTP_TLS_KEY: '/certs/jusrionegro.gov.ar.key'
       REGISTRY_AUTH: 'htpasswd'
       REGISTRY_AUTH_HTPASSWD_PATH: '/auth/htpasswd'
       REGISTRY_AUTH_HTPASSWD_REALM: 'Registry Realm'
       REGISTRY_STORAGE_FILESYSTEM_ROOTDIRECTORY: '/var/lib/registry'
     volumes:
       - ./auth:/auth
-      - ./registry-data:/var/lib/registry
+      - ../../datos/registry-data:/var/lib/registry
+      - ./certs:/certs
+    networks:
+      - network-devops
 
   registry-ui:
     image: joxit/docker-registry-ui:latest
@@ -36,16 +42,16 @@ services:
       - 8083:80
     container_name: registry-ui
     environment:
-      REGISTRY_URL: 'http://registry-devops.jusrionegro.gov.ar'
+      NGINX_PROXY_PASS_URL: 'https://registry-devops.jusrionegro.gov.ar'
+      REGISTRY_URL: 'https://registry-devops.jusrionegro.gov.ar:5000'
       SINGLE_REGISTRY: 'true'
       REGISTRY_TITLE: 'Docker Registry - Poder Judicial de Río Negro'
-      SHOW_CATALOG_NB_TAGS: 'false'
+      SHOW_CATALOG_NB_TAGS: 'true'
+      REGISTRY_SECURED: 'true'
     depends_on:
       - registry
+    networks:
+      - network-devops
 networks:
-  default:
-    ipam:
-      driver: default
-      config:
-        - subnet: 192.168.23.0/29
-          gateway: 192.168.23.1
+  network-devops:
+    external: true

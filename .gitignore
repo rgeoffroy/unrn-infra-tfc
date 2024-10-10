@@ -5,3 +5,4 @@
 /sonarqube/extensions/
 /sonarqube/logs/
 /git/git/
+/nginx-proxy-manager/data/

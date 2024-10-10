@@ -1,0 +1,21 @@
+services:
+  nginx-proxy-manager:
+    image: jc21/nginx-proxy-manager:latest
+    container_name: nginx-proxy-manager
+    environment:
+      TZ: 'America/Argentina/Buenos_Aires'
+      DISABLE_IPV6: 'true'
+    volumes:
+      - ./data:/data
+      - ./letsencrypt:/etc/letsencrypt
+      - ./certs:/etc/nginx/certs
+    ports:
+      - '80:80' # Public HTTP Port
+      - '443:443' # Public HTTPS Port
+      - '81:81' # Admin Web Port
+    restart: unless-stopped
+    networks:
+      - network-devops
+networks:
+  network-devops:
+    external: true
