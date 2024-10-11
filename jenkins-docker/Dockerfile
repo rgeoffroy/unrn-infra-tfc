@@ -3,6 +3,7 @@ LABEL org.opencontainers.image.authors="rgeoffroy@jusrionegro.gov.ar"
 USER root
 RUN apt-get update && \
     apt-get -y install apt-transport-https \
+    sshpass \
     ca-certificates \
     curl \
     gnupg2 \
@@ -16,5 +17,5 @@ RUN apt-get update && \
     apt-get -y install docker-ce
 RUN apt-get install -y docker-ce
 RUN usermod -a -G docker jenkins
-RUN echo "{ \"insecure-registries\":[\"172.16.21.52:5000\"] }"
+RUN echo "{ \"insecure-registries\":[\"registry-devops.jusrionegro.gov.ar:5000\"] }"
 USER jenkins
