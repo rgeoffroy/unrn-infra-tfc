@@ -1,0 +1,13 @@
+services:
+    telegraf:
+        restart: always
+        image: telegraf
+        container_name: telegraf
+        networks:
+          - network-devops
+        volumes:
+            - /var/run/docker.sock:/var/run/docker.sock
+            - ./telegraf.conf:/etc/telegraf/telegraf.conf:ro
+networks:
+  network-devops:
+    external: true
