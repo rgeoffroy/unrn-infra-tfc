@@ -1,5 +1,6 @@
 /jenkins/jenkins_compose/
 /jenkins/docker/
+/jenkins/docker/buildx/
 /registry/auth/
 /registry/registry_data/
 /sonarqube/data/
