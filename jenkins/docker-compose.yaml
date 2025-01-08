@@ -13,8 +13,9 @@ services:
       - TZ=America/Argentina/Buenos_Aires
     volumes:
       - ./jenkins_compose/jenkins_configuration:/var/jenkins_home
-      - ./known_hosts:/root/.ssh/known_hosts
-      - ./config.json:/root/.docker/config.json
+      - ./ssh:/root/.ssh/
+      - ./docker:/root/.docker/
+      
       - /var/run/docker.sock:/var/run/docker.sock
 networks:
   default:

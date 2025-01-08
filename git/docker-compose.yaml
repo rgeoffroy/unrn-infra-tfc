@@ -6,6 +6,7 @@ services:
       - USER_UID=1000
       - USER_GID=1000
       - DB_TYPE=sqlite3
+      - ROOT_URL=https://gitea-devops.jusrionegro.gov.ar
     volumes:
       - ./git:/data
     ports:
