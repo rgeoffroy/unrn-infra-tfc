@@ -6,7 +6,7 @@ RUN apt-get update && \
     redis \
     nano \
     python3-pip \
-    python3-redis
+    python3-redis \
     sshpass \
     ca-certificates \
     curl \
