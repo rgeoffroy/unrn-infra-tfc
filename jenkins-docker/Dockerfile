@@ -3,7 +3,7 @@ LABEL org.opencontainers.image.authors="rgeoffroy@jusrionegro.gov.ar"
 USER root
 RUN apt-get update && \
     apt-get -y install apt-transport-https \
-    redis \
+    redis-tools \
     nano \
     python3-pip \
     python3-redis \
